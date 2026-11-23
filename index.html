@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>anytime sessions · therapeutic studio</title>
+<meta name="description" content="Anytime sessions: a creative health practice that waits for you, made especially for the ohHEY Creative Care Community.">
+<style>
+  @font-face { font-family: "Asap"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/asap-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Asap"; font-style: italic; font-weight: 400; font-display: swap; src: url("assets/fonts/asap-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Asap"; font-style: normal; font-weight: 500; font-display: swap; src: url("assets/fonts/asap-latin-500-normal.woff2") format("woff2"); }
+
+  :root {
+    --ink: #4f4e4a;
+    --link: #6b5d4d;
+    --paper: #fdfdfd;
+    --button: #f6f6f6;
+    --rule: #dddcd8;
+    --gutter: clamp(1.5rem, 6.5vw, 7rem);
+    --space: clamp(3.5rem, 8vw, 7rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Asap", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+    line-height: 1.6;
+  }
+  img { display: block; width: 100%; height: auto; object-fit: cover; }
+  a { color: var(--link); text-underline-offset: 0.15em; }
+  a:hover { color: var(--ink); }
+  a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .skip {
+    position: absolute; left: -999px; top: 0;
+    background: var(--ink); color: var(--paper); padding: 0.5em 1em; z-index: 10;
+  }
+  .skip:focus { left: 0; }
+
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
+  .site-name {
+    display: inline-block; padding: 1.5rem 0;
+    font-size: 1.0625rem; color: var(--ink); text-decoration: none;
+  }
+  .site-name:hover { text-decoration: underline; }
+
+  /* hero: title and action on plain background, photo beside it */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    column-gap: clamp(2rem, 6vw, 6rem);
+    padding: clamp(1rem, 3vw, 3rem) 0 var(--space);
+  }
+  h1 {
+    margin: 0; font-weight: 500; letter-spacing: -0.01em; line-height: 1.02;
+    font-size: clamp(3rem, 7.2vw, 6.25rem);
+  }
+  .tagline { margin: 0.9em 0 1.6em; font-style: italic; font-size: clamp(1.25rem, 2.2vw, 1.875rem); line-height: 1.3; }
+  .hero img { aspect-ratio: 5 / 6; object-position: 50% 62%; }
+
+  .button {
+    display: inline-block; padding: 0.75em 1.6em;
+    border: 2px solid var(--ink); border-radius: 8px;
+    background: var(--button); color: var(--ink); font-weight: 500; text-decoration: none;
+  }
+  .button:hover { background: var(--ink); color: var(--paper); }
+
+  figure { margin: 0; }
+  figcaption { font-size: 0.875rem; line-height: 1.5; padding-top: 0.75em; text-align: left; }
+  /* photos sit in colour groups: blue first, earth tones later */
+  .group {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.75rem, 1.6vw, 1.5rem); padding: 0 0 var(--space);
+  }
+  .group img { aspect-ratio: 4 / 5; }
+  .group.earth { grid-template-columns: 2fr 1fr 1fr; }
+  .group.earth figure:first-child img { aspect-ratio: auto; height: 0; min-height: 100%; }
+  .group.earth figure { display: grid; grid-template-rows: 1fr auto; }
+
+  /* text: one heading size, heading on the left, short lines on the right */
+  .rows { padding-bottom: var(--space); }
+  .row {
+    display: grid; grid-template-columns: 1fr 2fr;
+    column-gap: clamp(2rem, 6vw, 6rem);
+    padding: 1.75rem 0; border-top: 1px solid var(--rule);
+  }
+  .row:last-child { border-bottom: 1px solid var(--rule); }
+  h2 { margin: 0; font-size: 1.25em; font-weight: 500; line-height: 1.3; }
+  .row p { margin: 0; max-width: 34em; }
+  .lede p { font-size: 1.15em; line-height: 1.5; }
+
+  .closing { padding-bottom: var(--space); }
+  .closing .button { margin-top: 1.75rem; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem; padding-bottom: 3rem; font-size: 0.875rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between;
+  }
+  footer a { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; row-gap: 2.5rem; }
+    .hero img { aspect-ratio: 4 / 3; }
+    .group, .group.earth { grid-template-columns: 1fr; row-gap: 1.75rem; }
+    .group.earth figure:first-child img { aspect-ratio: 3 / 2; height: auto; min-height: 0; }
+    .row { grid-template-columns: 1fr; row-gap: 0.4rem; padding: 1.5rem 0; }
+  }
+  @media print { .skip { display: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap">
+  <a class="site-name" href="https://www.therapeuticstudio.ca/">therapeutic studio</a>
+</header>
+
+<main id="main" class="wrap">
+
+  <div class="hero">
+    <div>
+      <h1>anytime sessions</h1>
+      <p class="tagline">A practice that waits for you.</p>
+      <a class="button" href="https://www.youtube.com/playlist?list=PLOAqpK3a9ULc">Watch the sessions on YouTube</a>
+    </div>
+    <figure>
+      <img src="assets/mountains-flowers.jpg" alt="Hazy blue mountains behind a soft blur of brightly coloured flowers." width="1067" height="1600">
+      <figcaption aria-hidden="true">Hazy blue mountains behind a soft blur of brightly coloured flowers.</figcaption>
+    </figure>
+  </div>
+
+  <div class="rows">
+    <section class="row lede">
+      <h2>Who it's for</h2>
+      <p>These sessions are made especially for the <a href="https://ohheycommunity.mn.co/share/I18x-lFycvg45VJ6?utm_source=manual">ohHEY Creative Care Community</a>. They're for the days when showing up live isn't possible: when your body, your energy, or your time zone has other plans. Nothing here expires. Come when you can, and leave when you need to.</p>
+    </section>
+    <section class="row">
+      <h2>How it works</h2>
+      <p>Each session is about 25 minutes and follows the same gentle shape as our live sessions: <a href="other-bodies-workbook.pdf">one prompt from the Other Bodies workbook (PDF)</a>, some watercolour blobs, and time to make alongside. Press play whenever suits you. Pause as often as you like, or come back and finish another day.</p>
+    </section>
+    <section class="row">
+      <h2>What you'll need</h2>
+      <p>Any paper, any paint or marker, and a small cup of water. No experience required, and no right or wrong way to arrive.</p>
+    </section>
+  </div>
+
+  <div class="group" role="group" aria-label="Three photographs in blue">
+    <figure>
+      <img src="assets/clouds-volcanic-slopes.jpg" alt="Billowing white clouds above rust and gold volcanic slopes." width="1067" height="1600" loading="lazy" style="object-position:50% 45%">
+      <figcaption aria-hidden="true">Billowing white clouds above rust and gold volcanic slopes.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/volcanic-slope.jpg" alt="A dark volcanic slope with patches of sunlit grass under a blue sky." width="1067" height="1600" loading="lazy" style="object-position:50% 70%">
+      <figcaption aria-hidden="true">A dark volcanic slope with patches of sunlit grass under a blue sky.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/cable-car.jpg" alt="An orange cable car crossing a dark, rocky volcanic slope." width="1067" height="1600" loading="lazy" style="object-position:50% 80%">
+      <figcaption aria-hidden="true">An orange cable car crossing a dark, rocky volcanic slope.</figcaption>
+    </figure>
+  </div>
+
+  <div class="rows">
+    <section class="row">
+      <h2>Share what you made</h2>
+      <p>These sessions have their own thread in the ohHEY Discord. If you'd like to, post what you made or how it went. If you'd rather keep it to yourself, that's welcome too.</p>
+    </section>
+    <section class="row">
+      <h2>Suggest a prompt</h2>
+      <p>These sessions are shaped by the community. If there's a feeling or theme you'd like a session to keep company with, add it to the anytime sessions thread in Discord.</p>
+    </section>
+    <section class="row">
+      <h2>Access</h2>
+      <p>Every session has captions and a written materials list. If something would make these easier for you to use, please tell me.</p>
+    </section>
+    <section class="row">
+      <h2>With thanks</h2>
+      <p>Made with gratitude for the ohHEY Creative Care Community, founded by art therapist <a href="https://heyshauna.com/">Shauna Kaendo</a>.</p>
+    </section>
+  </div>
+
+  <div class="group earth" role="group" aria-label="Three photographs in earth tones">
+    <figure>
+      <img src="assets/winding-path.jpg" alt="A winding path between rust-brown volcanic cones, with tiny distant walkers." width="1600" height="1067" loading="lazy">
+      <figcaption aria-hidden="true">A winding path between rust-brown volcanic cones, with tiny distant walkers.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/rope-lava-rock.jpg" alt="A knotted white rope stretched across dark, jagged lava rock." width="1067" height="1600" loading="lazy">
+      <figcaption aria-hidden="true">A knotted white rope stretched across dark, jagged lava rock.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/rocks-black-sand.jpg" alt="Scattered rocks casting shadows on black volcanic sand." width="1067" height="1600" loading="lazy" style="object-position:50% 75%">
+      <figcaption aria-hidden="true">Scattered rocks casting shadows on black volcanic sand.</figcaption>
+    </figure>
+  </div>
+
+  <div class="rows closing">
+    <section class="row">
+      <h2>A note on what this is</h2>
+      <div>
+        <p>I'm a peer and a facilitator, not a therapist, and these sessions are a creative health practice, not therapy. If you need more support than a practice can offer, please reach out to someone you trust or a health professional.</p>
+        <a class="button" href="https://www.youtube.com/playlist?list=PLOAqpK3a9ULc">Watch the sessions on YouTube</a>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="wrap">
+  <a href="https://www.therapeuticstudio.ca/">therapeutic studio</a>
+  <span>© 2026</span>
+</footer>
+</body>
+</html>
